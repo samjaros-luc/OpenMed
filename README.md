@@ -1,1 +1,1 @@
-# OpenMed - A medical database for the modern worldr
+# OpenMed - A medical database for the modern world
