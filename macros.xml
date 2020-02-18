@@ -1,0 +1,7 @@
+<application>
+  <component name="ActionMacroManager">
+    <macro name="New Python File">
+      <action id="NewPythonFile" />
+    </macro>
+  </component>
+</application>
