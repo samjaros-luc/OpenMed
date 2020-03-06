@@ -8,11 +8,6 @@ class Medical_Event:
         self.response = response
         self.outcome = outcome
 
-    def __eq__(self, other):
-        if self.id_type == other.id_type and self.id_data != other.id_data:
-            return False
-        return self.first_name == other.first_name and self.last_name == other.last_name and self.sex == other.sex
-
     def get_title(self):
         return self.title
 
