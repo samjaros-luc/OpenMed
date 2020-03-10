@@ -13,6 +13,9 @@ class Medical_Event:
         self.end = end
         self.response = response
         self.outcome = outcome
+        
+    def __str__(self):
+        return str(self)
 
     def get_ICD10_code(self):
         return self.ICD10_code
