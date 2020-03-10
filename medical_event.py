@@ -1,3 +1,7 @@
+import datetime
+import Drug
+import disease
+
 class Medical_Event:
 
     def __init__(self, title="", symptoms=[], start="", end="", response="", outcome=""):

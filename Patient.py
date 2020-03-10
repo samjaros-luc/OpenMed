@@ -1,3 +1,6 @@
+import medical_event
+
+
 class Patient:
     def __init__(self, first_name, last_name="", id_data="", id_type="", sex="N", height=-1, weight=-1):
         self.first_name = first_name
@@ -12,3 +15,7 @@ class Patient:
         if self.id_type == other.id_type and self.id_data != other.id_data:
             return False
         return self.first_name == other.first_name and self.last_name == other.last_name and self.sex == other.sex
+
+    ## TO DO ##
+    def __hash__(self):
+        return 0

@@ -1,3 +1,5 @@
+import datetime
+
 class Drug:
     #initializer
     def __init__(self, name="", generic_name="",dosage="",diseases=[],side_effects=[],incompatible_drugs=[]):

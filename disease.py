@@ -1,3 +1,5 @@
+import datetime
+
 class Disease:
     def __init__(self, name="", symptoms=[], start="", end=""):
         self.name = name
