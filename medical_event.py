@@ -5,7 +5,7 @@ import datetime
 class Medical_Event:
 
     def __init__(self, ICD10_code="", disease=None, drugs=[], symptoms=[], start=None, end=None, response="", outcome=""):
-        self.ICD10_code= ICD10_code
+        self.ICD10_code = ICD10_code
         self.disease = disease
         self.drugs = drugs
         self.symptoms = symptoms
