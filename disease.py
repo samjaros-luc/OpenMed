@@ -8,7 +8,7 @@ class Disease:
         self.end = end
     
     def __str__(self):
-        return name + ", " + str(symptoms) + ", " + start.strftime("%d/%m/%y") + ", " + end.strftime("%d/%m/%y")
+        return self.name + ", " + str(self.symptoms) + ", " + self.start.strftime("%d/%m/%y") + ", " + self.end.strftime("%d/%m/%y")
         
     def get_symptoms(self):
         return self.symptoms
