@@ -1,5 +1,5 @@
 #import drug
-#import disease
+import disease
 import datetime
 
 class Medical_Event:
@@ -13,9 +13,18 @@ class Medical_Event:
         self.end = end
         self.response = response
         self.outcome = outcome
-        
+
     def __str__(self):
-        return str(self)
+        string = self.ICD10_code + "; " + self.disease + "; " + str(self.start) + "; " + str(self.end) + "; "
+        symptoms = ""
+        for symptom in self.symptoms:
+            symptoms = symptoms + symptom + ", "
+        string = string + symptoms
+        drugs = ""
+        for drug in self.drugs:
+            drugs = drugs + drug + ", "
+        string = string + "; " + drugs + "; " + self.response + "; " + self.outcome
+        return string
 
     def get_ICD10_code(self):
         return self.ICD10_code
@@ -91,6 +100,9 @@ print(med_event2.get_end())
 print(med_event2.get_response())
 print(med_event2.get_outcome())
 med_event2.print_info()
+
+
+print(str(med_event2))
 
 
 
