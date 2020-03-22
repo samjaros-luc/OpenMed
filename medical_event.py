@@ -31,13 +31,13 @@ class Medical_Event:
 
     def get_symptoms(self):
         return self.symptoms
-    
+
     def get_start(self):
         return self.start
-    
+
     def get_end(self):
         return self.end
-    
+
     def get_response(self):
         return self.response
 
@@ -100,18 +100,3 @@ print(med_event2.get_end())
 print(med_event2.get_response())
 print(med_event2.get_outcome())
 med_event2.print_info()
-
-
-print(str(med_event2))
-
-
-
-
-
-
-
-
-
-
-
-
