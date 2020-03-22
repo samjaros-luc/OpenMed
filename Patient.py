@@ -1,3 +1,9 @@
+#Things to add:
+#Develop a hash method - hashing name(s), id, and id type as strings
+#add an array of medical events - import medical event class
+#method for adding a new medical events
+
+
 class Patient:
     def __init__(self, first_name, last_name="", id_data="", id_type="", sex="N", height=-1, weight=-1):
         self.first_name = first_name

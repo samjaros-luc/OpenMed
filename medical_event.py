@@ -1,3 +1,8 @@
+#implement datetime python class for start and end datetime
+#import drug and disease class
+#add a disease and drug object
+
+
 class Medical_Event:
 
     def __init__(self, title="", symptoms=[], start="", end="", response="", outcome=""):
@@ -13,13 +18,13 @@ class Medical_Event:
 
     def get_symptoms(self):
         return self.symptoms
-    
+
     def get_start(self):
         return self.start
-    
+
     def get_end(self):
         return self.end
-    
+
     def get_response(self):
         return self.response
 
@@ -70,15 +75,3 @@ print(med_event2.get_end())
 print(med_event2.get_response())
 print(med_event2.get_outcome())
 med_event2.print_info()
-
-
-
-
-
-
-
-
-
-
-
-

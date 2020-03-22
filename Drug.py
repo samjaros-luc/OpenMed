@@ -1,3 +1,7 @@
+#add start and end dates (implement datetime class)
+#add mutator functions for changing start and end date of a Drug
+#either remove side_effects and incompatbialbe drugs and implement an API or leave them
+
 class Drug:
     #initializer
     def __init__(self, name="", generic_name="",dosage="",diseases=[],side_effects=[],incompatible_drugs=[]):
