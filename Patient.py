@@ -1,6 +1,6 @@
 import datetime
 class Patient:
-    def __init__(self, first_name, last_name="", dob=None, id_data="", id_type="", sex="N", height=-1, weight=-1):
+    def __init__(self, first_name, last_name="", dob=None, id_data="", id_type="", sex="N", height=-1, weight=-1, med_events=[]):
         self.first_name = first_name
         self.last_name = last_name
         self.dob = dob
@@ -9,6 +9,7 @@ class Patient:
         self.sex = sex
         self.height = height
         self.weight = weight
+        self.med_event = med_events
 
     def __eq__(self, other):
         if self.id_type == other.id_type and self.id_data != other.id_data:
