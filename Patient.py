@@ -1,5 +1,6 @@
 import datetime
 import hashlib
+
 class Patient:
     def __init__(self, first_name='', last_name='', dob=None, id_data='', id_type='', sex="N", height=-1, weight=-1, med_events=[]):
         self.first_name = first_name
@@ -20,7 +21,6 @@ class Patient:
         h.update(id_type.encode())
         h.update(id_data.encode())
         self.hashcode = h.hexdigest()
-
 
     def __eq__(self, other):
         if self.id_type == other.id_type and self.id_data != other.id_data:
