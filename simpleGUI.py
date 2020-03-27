@@ -1,6 +1,6 @@
 import PySimpleGUI as gui
 
-gui.ChangeLookAndFeel("DarkRed1") # TODO Customize colors
+gui.ChangeLookAndFeel("Purple") # TODO Customize colors
 gui.SetOptions(font=("Helvetica", 12), text_justification="center")
 idTypes = ("Driver's License", "ID Card", "Passport", "Green Card")   # Possible ID types
 dictPassthru = {}   # dictionary for passing through forms across pages
@@ -8,7 +8,7 @@ dictPassthru = {}   # dictionary for passing through forms across pages
 # Creates & operates login window
 def login():
     loginbox = [
-        [gui.T("Provider Login", background_color="#ff8a8a", font=("Helvetica", 16), justification="left")],
+        [gui.T("Provider Login", font=("Helvetica", 16), justification="left")],
         [gui.T("Username")],
         [gui.In(key="user")],
         [gui.T("Password")],
@@ -19,7 +19,7 @@ def login():
     layout = [
         [gui.T("OpenMed", font=("Helvetica", 30), justification="center")],
         [gui.T("Secure medical records available when you need them", font=("Helvetica", 20), justification="center")],
-        [gui.Column(loginbox, background_color="#ff8a8a", justification="center")]
+        [gui.Column(loginbox, justification="center")]
     ]
 
     window = gui.Window("OpenMed - Login", default_button_element_size=(40, 1)).Layout(layout)
@@ -78,6 +78,7 @@ def newPatient(values):
 
 def displayPatient(Patient):
     return   # TODO Write displayPatient window
+
 
 if __name__ == "__main__":
     login()

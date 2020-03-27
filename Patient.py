@@ -1,6 +1,7 @@
 import datetime
 import hashlib
 
+
 class Patient:
     def __init__(self, first_name='', last_name='', dob=None, id_data='', id_type='', sex="N", height=-1, weight=-1, med_events=[]):
         self.first_name = first_name

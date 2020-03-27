@@ -1,10 +1,11 @@
 #add start and end dates (implement datetime class)
 #add mutator functions for changing start and end date of a Drug
-
 import datetime
+
+
 class Drug:
     #initializer
-    def __init__(self, name="", generic_name="",dosage="",diseases=[],side_effects=[],incompatible_drugs=[],start=None,end=None):
+    def __init__(self, name="", generic_name="", dosage="", diseases=[], side_effects=[], incompatible_drugs=[], start=None, end=None):
         self.name = name
         self.generic_name = generic_name
         #Currently using dosage as a string so that we can include units.

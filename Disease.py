@@ -1,6 +1,7 @@
 import datetime
 from datetime import date
 
+
 class Disease:
     def __init__(self, name, start, end=None, symptoms=[]):
         self.name = name

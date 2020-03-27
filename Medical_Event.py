@@ -1,6 +1,7 @@
 #import drug
-import disease
+import Disease
 import datetime
+
 
 class Medical_Event:
 
