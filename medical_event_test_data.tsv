@@ -1,4 +1,3 @@
-Medical Event Class Test Data								
 MEID	ICD10 Code	Disease	Drugs	Symptoms	Start	End	Response	Outcome
 ME1	J45	Asthma	Singulair	coughing, shortness of breath, wheezing	2004/08/03	None	Maintenance Medication	Condition Managed
 ME2	K35	Acute Appendicitis	None	sharp abdominal pain, nausea, vomiting	1998/04/23	1998/04/25	Appendectomy	Inflammation gone

@@ -1,4 +1,3 @@
-Patient Class Test Data								
 First Name	Last Name	Date of Birth (YYYY/MM/DD)	Id Number	Id Type	Sex	Height (in)	Weight (lbs)	Medical Event List
 Jonathan	Smith	1999/05/17	74326734	Driver's License	M	70	190	ME1
 Tyler	Cleary	1975/04/03	47328190	Driver's License	M	68	180	ME2
