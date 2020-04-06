@@ -65,39 +65,36 @@ class Medical_Event:
         print("Outcome: " + self.outcome)
 
 
+if __name__ == "__main__":
+    start1 = datetime.date(2020, 1, 1)
+    end1 = datetime.date(2020, 1, 5)
+    symptoms1 = ["coughing", "runny nose", "sneezing"]
+    med_event1 = Medical_Event("N/A", "common cold", [], symptoms1, start1, end1, "Given tylenol.", "Cold went away.")
+    print(med_event1.get_symptoms())
+    print(med_event1.get_start())
 
-#Test:
+    start2 = datetime.date(2020, 1, 1)
+    symptoms2 = ["coughing", "weezing", "shortness of breath"]
+    med_event2 = Medical_Event("N/A", "asthma", [], symptoms2, start2, None, "Given inhaler.", "Condition managed.")
+    print(med_event2.get_end())
+    print(med_event2.get_response())
+    print(med_event2.get_outcome())
 
-start1 = datetime.date(2020, 1, 1)
-end1 = datetime.date(2020, 1, 5)
-symptoms1 = ["coughing", "runny nose", "sneezing"]
-med_event1 = Medical_Event("N/A", "common cold", [], symptoms1, start1, end1, "Given tylenol.", "Cold went away.")
-print(med_event1.get_symptoms())
-print(med_event1.get_start())
+    start3 = datetime.date(2020, 2, 1)
+    end3 = datetime.date(2020, 2, 2)
+    symptoms3 = ["coughing", "weezing", "shortness of breath"]
+    med_event3 = Medical_Event("N/A", "asthma attack", [], symptoms3, start3, end3, "Given inhaler.", "Stopped asthma attack.")
+    print(med_event3.get_end())
+    print(med_event3.get_response())
+    print(med_event3.get_outcome())
+    med_event3.print_info()
 
-start2 = datetime.date(2020, 1, 1)
-symptoms2 = ["coughing", "weezing", "shortness of breath"]
-med_event2 = Medical_Event("N/A", "asthma", [], symptoms2, start2, None, "Given inhaler.", "Condition managed.")
-print(med_event2.get_end())
-print(med_event2.get_response())
-print(med_event2.get_outcome())
+    #Cure for asthma is created:
 
-start3 = datetime.date(2020, 2, 1)
-end3 = datetime.date(2020, 2, 2)
-symptoms3 = ["coughing", "weezing", "shortness of breath"]
-med_event3 = Medical_Event("N/A", "asthma attack", [], symptoms3, start3, end3, "Given inhaler.", "Stopped asthma attack.")
-print(med_event3.get_end())
-print(med_event3.get_response())
-print(med_event3.get_outcome())
-med_event3.print_info()
-
-
-#Cure for asthma is created:
-
-end2 = datetime.date(2020, 3, 6)
-drug = ["cure"]
-med_event2.update_outcome(end2, drug,  "Given cure.", "Asthma cured.")
-print(med_event2.get_end())
-print(med_event2.get_response())
-print(med_event2.get_outcome())
-med_event2.print_info()
+    end2 = datetime.date(2020, 3, 6)
+    drug = ["cure"]
+    med_event2.update_outcome(end2, drug,  "Given cure.", "Asthma cured.")
+    print(med_event2.get_end())
+    print(med_event2.get_response())
+    print(med_event2.get_outcome())
+    med_event2.print_info()

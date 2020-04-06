@@ -55,15 +55,15 @@ class Drug:
         string = string +'Start: '+str(self.start)+'; End: '+str(self.end)
         return string
 
-#Testing
-start1 = datetime.date(2000,2,29)
-end1 = datetime.date(2020,2,29)
-diseases1 = ['allergies']
-side_effects1 = ['headache','sleepiness','fatigue','nervousness','stomach pain','diarrhea','dry mouth','sore throat','hoarseness']
-drug1 = Drug('Claritin','Ioratadine','10 mg',diseases1,side_effects1,[],start1,end1)
-print(drug1)
+if __name__ == "__main__":
+    start1 = datetime.date(2000,2,29)
+    end1 = datetime.date(2020,2,29)
+    diseases1 = ['allergies']
+    side_effects1 = ['headache','sleepiness','fatigue','nervousness','stomach pain','diarrhea','dry mouth','sore throat','hoarseness']
+    drug1 = Drug('Claritin','Ioratadine','10 mg',diseases1,side_effects1,[],start1,end1)
+    print(drug1)
 
-diseases2 = ['acne']
-side_effects2 = ['dryness','mood changes','stomach pain','nausea']
-drug2 = Drug('Accutane','Isotretinoin','1.0 mg',diseases2,side_effects2,[],start1,end1)
-print(drug2)
+    diseases2 = ['acne']
+    side_effects2 = ['dryness','mood changes','stomach pain','nausea']
+    drug2 = Drug('Accutane','Isotretinoin','1.0 mg',diseases2,side_effects2,[],start1,end1)
+    print(drug2)

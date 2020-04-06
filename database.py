@@ -14,7 +14,9 @@ class Database:
     drug = None   # Drugs collection
 
     def __init__(self, username, password):
-        client = firestore.Client()
+        # TODO get token for user to create handle
+
+        client = firestore.Client()   # Create handle
         p = client.collection(u'patients')   # Patient collection
         m = client.collection(u'medical_events')   # Medical event collection
         dis = client.collection(u'diseases')   # Diseases collection
@@ -22,10 +24,14 @@ class Database:
 
     # Given patient info, it grabs the patient record
     # Required input: dictionary with "first_name", "last_name", "id_type", and "id_data" defined
-    def getPatient(self, dict={}, hash=""):
+    def getPatient(self, dict=None, hash=""):
         if hash == "":
-            doc = self.p.document(Patient(first_name=dict["first_name"], last_name=dict["last_name"],
-                                          id_type=dict["id_type"], id_data=dict["id_data"]).hashcode)
+            try:
+                doc = self.p.document(Patient(first_name=dict["first_name"], last_name=dict["last_name"],
+                                              id_type=dict["id_type"], id_data=dict["id_data"]).hashcode)
+            except KeyError:
+                print("Dictionary passed to database.py did not contain all of necessary keys. Ensure that at least ")
+                return None
         else:
             doc = self.p.document(hash)
         if doc.exists:
@@ -60,3 +66,8 @@ class Database:
     def newPatient(self, patient):
         # TODO
         return Patient()
+
+
+if __name__ == "__main__":
+    Database(username="admin", password="admin")
+    # TODO class testing

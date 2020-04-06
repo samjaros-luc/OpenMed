@@ -25,15 +25,15 @@ class Disease:
     def get_symptoms(self):
         return self.symptoms
 
-#Test:
 
-symptoms = ["cough", "runny nose", "sneeze"]
-start = datetime.date(2020, 1, 1)
-end = datetime.date(2020, 1, 5)
-disease1 = Disease("common cold", start, end, symptoms)
+if __name__ == "__main__":
+    symptoms = ["cough", "runny nose", "sneeze"]
+    start = datetime.date(2020, 1, 1)
+    end = datetime.date(2020, 1, 5)
+    disease1 = Disease("common cold", start, end, symptoms)
 
-print(disease1.symptoms)
-print(disease1.get_symptoms())
-print(str(disease1))
-disease2 = Disease.unpack(str(disease1))
-print(str(disease2))
+    print(disease1.symptoms)
+    print(disease1.get_symptoms())
+    print(str(disease1))
+    disease2 = Disease.unpack(str(disease1))
+    print(str(disease2))
