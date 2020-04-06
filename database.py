@@ -7,11 +7,18 @@ import datetime
 
 
 class Database:
-    client = firestore.Client()
-    p = client.collection(u'patients')   # Patient collection
-    m = client.collection(u'medical_events')   # Medical event collection
-    dis = client.collection(u'diseases')   # Diseases collection
-    drug = client.collection(u'drugs')   # Drugs collection
+    client = None
+    p = None   # Patient collection
+    m = None   # Medical event collection
+    dis = None   # Diseases collection
+    drug = None   # Drugs collection
+
+    def __init__(self, username, password):
+        client = firestore.Client()
+        p = client.collection(u'patients')   # Patient collection
+        m = client.collection(u'medical_events')   # Medical event collection
+        dis = client.collection(u'diseases')   # Diseases collection
+        drug = client.collection(u'drugs')   # Drugs collection
 
     # Given patient info, it grabs the patient record
     # Required input: dictionary with "first_name", "last_name", "id_type", and "id_data" defined
