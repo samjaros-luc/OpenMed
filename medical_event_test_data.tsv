@@ -1,0 +1,62 @@
+MEID	ICD10 Code	Disease	Drugs	Symptoms	Start	End	Response	Outcome
+ME1	J45	Asthma	Singulair	coughing, shortness of breath, wheezing	2004/08/03	None	Maintenance Medication	Condition Managed
+ME2	K35	Acute Appendicitis	None	sharp abdominal pain, nausea, vomiting	1998/04/23	1998/04/25	Appendectomy	Inflammation gone
+ME3	O15	Eclampsia	Magnesium sulfate	seizures, headaches	2007/05/26	2007/06/03	Cesarean Delivery	Seizing stopped
+ME4	L20	Atopic Dermatitis	Triamcinolone	itchy red bumps, dryness	1989/02/05	None	Maintenance Medication	Condition Managed
+ME5	M80	Osteoporosis	Alendronate	joint pain, brittle fingernails	1990/03/17	None	Maintenance Medication	Condition Managed
+ME5	C50	Breast Cancer	Capecitabine	breast pain, swelling, lumps	2003/08/25	2005/06/14	Chemotherapy, Partial Mastectomy	Cancer Free
+ME6	H80.2	Cochlear Otosclerosis	None	hearing loss, dizziness, ringing in ears	1957/03/21	None	Cochlear Implant	Hearing Restored
+ME7	K74	Cirrhosis	Imuran	juandice, abdominal pain, diaherra	2005/11/27	2008/06/06	Liver Transplant	Healthy Liver
+ME8	A00	Cholera	Erythromycin	abdominal pain, diaherra	1996/12/01	1999/12/09	Antibiotics	Cured
+ME9	B20	HIV	Truvada	headache, fatigue	1991/08/08	None	Maintenance Medication	Condition Managed
+ME10	A02	Salmonella	Loperamide	abdominal pain	2001/12/12	2001/12/23	Antibiotics	Cured
+ME11	S82	Broken Leg	Ibuprofen	leg pain	2007/07/15	2007/09/19	Cast	Break Healed
+ME11	S06	Concussion	None	headache	2009/10/13	2009/10/16	MRI, Rest	Recovery
+ME12	F90	ADHD	None	irritability, short attention span, hyperactivity	2008/03/21	None	Behavioral Therapy	Condition Managed
+ME13	Q05	Spina Bifida	None	nerve and tissue exposure	2019/10/20	None	Neurosurgery	Improvement in Condition
+ME14	K51	Ulcerative Colitis	Mesalamine	abdominal pain, diaherra	2008/09/03	None	Maintenance Medication	Condition Managed
+ME14	L20	Atopic Dermatitis	Hydrocortisone	itchy red bumps, dryness	1994/02/19	None	Maintenance Medication	Condition Managed
+ME15	J11	Influenza	Dayquil	fever, abdominal pain, fatigue, chills	1990/02/09	1990/02/15	Told to rest, treated symptoms	Cured
+ME16	I11	Heart Disease	Eplerenone	chest pain, shortness of breath, jaw pain	1993/11/06	None	Maintenance Medication	Condition Managed
+ME17	I20	Heart Attack	Ticagrelor	chest pain, shortness of breath, jaw pain	2000/01/12	2000/01/12	Anticlotting medication	Recovery
+ME18	I63	Stroke	benazepril	headache, numbness in face, speech difficulty	2015/10/23	2015/10/23	MRI, physical therapy	Recovery
+ME19	F31	Bipolar Disorder	Lamictal	racing thoughts, jumpy, insomnia, fatigue	1994/06/26	None	Maintenance Medication	Condition Managed
+ME20	C43	Melanoma	None	Moles becoming darker in color and larger	2008/09/10	2009/03/25	Raditation	Cancer Free
+ME20	F42	Obsessive Complusive Disorder 	Zoloft	nagging thoughts, repetitive behavior, nervousness	1984/12/14	None	Maintenance Medication	Condition Managed
+ME21	T84	Broken Hip	Ibuprofen	hip pain	2012/04/17	2012/07/02	Surgery	Break Healed
+ME22	C18	Colon Cancer	Oxaliplatin	abdominal pain	2006/03/27	2007/01/17	Chemotherapy, Surgery	Cancer Free
+ME23	I67.1	Brain Aneurysm	Tylenol	headache, blurred vision	1985/02/13	1985/02/14	Surgery	Aneurysm Healed
+ME24	F20	Schizophrenia	Latuda	confused thinking, hallucinations, delusions	2013/08/19	None	Maintenance Medication	Condition Managed
+ME25	F33	Major Depressive Disorder	Prozac	fatigue, sudicial thoughts, sadness	2019/12/11	None	Maintenance Medication	Condition Managed
+ME25	R63	Anorexia	None	fear of gaining weight, not eating	2017/03/18	None	Therapy	Condition Managed
+ME26	F84	Autism	None	speech difficulty, temper tantrums, resists physical contact	2009/10/16	None	Behavioral Therapy	Condition Managed
+ME27	N18	Kidney Disease	Imuran	nausea, vomiting, fatigue, trouble sleeping	1998/02/04	2001/01/12	Dialysis, Kidney Transplant	Cured
+ME28	H10	Conjunctivitis	Blephamide	red eyes, itching, burning	2000/03/02	2000/03/09	Antibiotics	Cured
+ME29	F41.1	Generalized Anxiety Disorder	Lexapro	trouble sleeping, fatigue, restlessness	2001/12/14	None	Maintenance Medication	Condition Managed
+ME30	G30	Alzheimer's Disease	Aricept	forgetfulness, rambling, trouble sleeping	1982/05/02	None	Maintenance Medication	Slowed progression of condition
+ME31	M10	Gout	Allopurinol	pain and swelling in joints	1969/02/21	None	Maintenance Medication	Condition Managed
+ME32	J40	Bronchitis	Azithromycin	coughing, shortness of breath, wheezing	2007/06/03	2007/06/10	Rest	Cured
+ME32	J13	Pneumonia	Levaquin	coughing, shortness of breath, fever	2007/06/05	2007/06/09	Antibiotics	Cured
+ME32	A37	Whooping Cough	Azithromycin	coughing	2007/06/04	2007/06/08	Antibiotics	Cured
+ME33	T67	Heat Stroke	None	dizziness, red hot and dry skin, dehydration	2018/03/11	2018/03/12	IV Fluids, Cold Compress	Cured
+ME34	S52	Broken Arm	Ibuprofen	arm pain	2013/02/28	2013/04/30	Cast	Break Healed
+ME35	M41	Scoliosis	Tylenol	back pain, uneven shoulders	2010/03/04	None	Back Brace	Condition Managed
+ME36	R48	Dyslexia	None	trouble reading	1994/12/18	None	Referral for educational help	Condition Managed
+ME37	C34	Lung Cancer	Etoposide	shortness of breath, chest pain	2020/01/31	None	Chemotherapy	Tumor Shrinking
+ME38	K50	Crohn's Disease	Humira	abdominal pain, diaherra	2001/05/14	None	Maintenance Medication	Condition Managed
+ME38	N83.2	Ovarian Cyst	None	abdominal pain	2006/06/30	2006/07/03	Ultrasound, Rest	Cyst gone
+ME39	Q90	Down Syndrome	None	facial abnormalities, intellectual disability	2014/08/08	None	Therapy	Condition Managed
+ME40	C82	Lymphoma	Prednisone	swollen glands, cough, fatigue	2017/07/12	None	Chemotherapy	Tumor Shrinking
+ME41	C61	Prostate Cancer	Bicalutamide	erectile dysfunction, trouble urinating	2016/03/18	2018/02/24	Chemotherapy	Cancer Free
+ME42	D66	Hemophilia	Hemlibra	excessive bleeding	1926/03/26	None	Maintenance Medication	Condition Managed
+ME43	E10	Type 1 Diabetes	Insulin	fatigue, frequent urination, extreme hunger	1980/07/18	None	Maintenance Medication	Condition Managed
+ME44	G47.3	Sleep Apnea	None	snoring, difficulty breahting during sleep 	1993/11/24	None	CPAP Machine	Condition Managed
+ME45	C54	Uterine Cancer	Paclitaxel	vaginal bleed, vaginal discharge, painful urination	1988/02/11	1990/01/05	Chemotherapy	Cancer Free
+ME45	H81.3	Vertigo	Meclizine	dizziness, nausea	1972/04/05	None	Physical Therapy	Condition Managed
+ME46	I10	Hypertension	Benazepril	headaches, shortness of breath	2015/09/08	None	Maintenance Medication	Condition Managed
+ME47	F95.2	Tourette Syndrome	Clonidine	arm jerking, mouth twitching	1997/07/12	None	Maintenance Medication	Condition Managed
+ME47	J45	Asthma	Singulair	coughing, shortness of breath, wheezing	1996/03/22	None	Maintenance Medication	Condition Managed
+ME48	B18	Viral Hepatitis	Harvoni	abdominal pain, diaherra, vomitting	1998/10/10	None	Maintenance Medication	Condition Managed
+ME49	B37.9	Yeast Infection	Fluconazole	burning, painful urination	2005/09/14	2005/09/23	Antifungal Medication	Cured
+ME50	A54	Gonorrhea	Ceftriaxone, Azithromycin	painful urination, sore throat	2018/03/02	2018/08/03	Medication	Cured
+ME50	H60	Ear Infection	Amoxicillin	ear pain, ringing in ears	2006/02/23	2006/03/05	Antibiotics	Cured
