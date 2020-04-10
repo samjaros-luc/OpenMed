@@ -5,7 +5,6 @@ from datetime import date
 class Disease:
     def __init__(self, name, start, end=None, symptoms=[]):
         self.name = name
-        self.symptoms = symptoms
         self.start = start
         self.end = end
         self.symptoms = symptoms
