@@ -1,11 +1,10 @@
-#import drug
-import Disease
+import drug
 import datetime
 
 
 class Medical_Event:
 
-    def __init__(self, ICD10_code="", disease=None, drugs=[], symptoms=[], start=None, end=None, response="", outcome=""):
+    def __init__(self, ICD10_code="", disease="", drugs=[], symptoms=[], start=None, end=None, response="", outcome=""):
         self.ICD10_code = ICD10_code
         self.disease = disease
         self.drugs = drugs
@@ -35,6 +34,9 @@ class Medical_Event:
 
     def get_start(self):
         return self.start
+    
+    def get_disease(self):
+        return self.disease
 
     def get_end(self):
         return self.end

@@ -2,7 +2,6 @@ from google.cloud import firestore
 from Patient import Patient
 from Medical_Event import Medical_Event
 from Drug import Drug
-from Disease import Disease
 import datetime
 
 
@@ -10,7 +9,6 @@ class Database:
     client = None
     p = None   # Patient collection
     m = None   # Medical event collection
-    dis = None   # Diseases collection
     drug = None   # Drugs collection
 
     def __init__(self, username, password):
@@ -19,7 +17,6 @@ class Database:
         client = firestore.Client()   # Create handle
         p = client.collection(u'patients')   # Patient collection
         m = client.collection(u'medical_events')   # Medical event collection
-        dis = client.collection(u'diseases')   # Diseases collection
         drug = client.collection(u'drugs')   # Drugs collection
 
     # Given patient info, it grabs the patient record
@@ -37,12 +34,8 @@ class Database:
                     drugs.append(Drug(name=drug_doc.data["name"], generic_name=drug_doc.data["generic_name"],
                                       dosage=drug_doc.data["dosage"], side_effects=drug_doc.data["side_effects"],
                                       start=drug_doc.data["start"], end=drug_doc.data["data"]))
-                dis_doc = self.dis.document(me_doc.data["disease"])
-                disease = (Disease(name=dis_doc.data["name"], symptoms=dis_doc.data["symptoms"],
-                                   start=dis_doc.data["start"], end=dis_doc.data["end"]))
-                med_events.append(Medical_Event(ICD10_code=me_doc.data["ICD10"], start=me_doc.data["start"],
-                                                end=me_doc.data["end"], disease=disease, drugs=drugs,
-                                                outcome=me_doc.data["outcome"], response=me_doc.data["response"]))
+                med_events.append(Medical_Event(ICD10_code=me_doc.data["ICD10"], disease=me_doc.data["disease"], start=me_doc.data["start"],
+                                                end=me_doc.data["end"], drugs=drugs, outcome=me_doc.data["outcome"], response=me_doc.data["response"]))
             return Patient(first_name=doc.data["first_name"], last_name=doc.data["last_name"],
                            id_type=doc.data["id_type"], id_data=doc.data["id_data"], dob=doc.data["dob"],
                            sex=doc.data["sex"], height=doc.data["height"], weight=doc.data["weight"],
@@ -67,7 +60,6 @@ class Database:
                 m_doc.data[key] = m_dic.get(key)
         return
 
-    
     def newMedicalEvent(self, hashcode, m_dic):
         p_doc = getPatient(self, hashcode)
         #generate ref for med event in some way..
@@ -103,7 +95,6 @@ class Database:
         for key in drug_keys:
             drug_doc.data[key] = drug_dic.get(key)
         return
-    
 
     # Given a new patient, it will add it to the database
     def newPatient(self, patient):
@@ -137,11 +128,9 @@ class Database:
             m_doc = self.m.document(
                 #reference
                 )
-            
             #make new data entries for document
             ICD10_code = med_event.ICD10_code
             m_doc.data["ICD10_code"] = ICD10_code
-            #should be a reference
             disease = med_event.disease
             m_doc.data["disease"] = disease
             #should be a list of references
@@ -157,20 +146,6 @@ class Database:
             m_doc.data["response"] = response
             outcome = med_event.outcome
             m_doc.data["outcome"] = outcome 
-            
-            #make new documnet in diseases collection
-            dis_doc = self.dis.document(
-                #reference
-                )
-            #make new data entries for document
-            name = disease.name
-            dis_doc.data["name"] = name
-            symptoms = disease.symptoms
-            dis_doc.data["symptoms"] = symptoms
-            start = disease.start
-            dis_doc.data["start"] = start
-            end = disease.end
-            dis_doc.data["end"] = end
 
             for drug in drugs:
                 #make new documnet in drugs collection
@@ -199,22 +174,7 @@ class Database:
         return
 
 
-    
-
-
 if __name__ == "__main__":
     Database(username="admin", password="admin")
     # TODO class testing
-
-
-
-
-
-
-
-
-
-
-
-
-    
+   
