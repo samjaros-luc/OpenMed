@@ -1,51 +1,62 @@
-from google.cloud import firestore
+# For interacting with firebase
+import firebase_admin
+from firebase_admin import credentials, auth, firestore
+# For interacting with companion classes
 from Patient import Patient
 from Medical_Event import Medical_Event
 from Drug import Drug
 import datetime
 
 
+
 class Database:
-    client = None
-    p = None   # Patient collection
-    m = None   # Medical event collection
-    drug = None   # Drugs collection
+    p = None   # Patient collection reference
+    m = None   # Medical event collection reference
+    drug = None   # Drugs collection reference
 
     def __init__(self, username, password):
         # TODO get token for user to create handle
 
-        client = firestore.Client()   # Create handle
-        p = client.collection(u'patients')   # Patient collection
-        m = client.collection(u'medical_events')   # Medical event collection
-        drug = client.collection(u'drugs')   # Drugs collection
+        ### TEMPORARY access collections via service account
+        # Get creditentails using token from service account (.json file, Sam can send it to you)
+        cred = credentials.Certificate("C:/Users/samja/OneDrive/Loyola - Semester 8/COMP 363/OpenMed/openmed-comp363-firebase-adminsdk-qglti-767b82d10f.json")
+        # Create instance of application
+        app = firebase_admin.initialize_app(cred)
+
+        client = firestore.client(app)   # Create handle
+        self.p = client.collection("patients")   # Patient collection
+        self.m = client.collection("medical_events")   # Medical event collection
+        self.d = client.collection("drugs")   # Drugs collection
 
     # Given patient info, it grabs the patient record
     # Required input: dictionary with "first_name", "last_name", "id_type", and "id_data" defined
-
-    def getPatient(self, hashcode):
-        doc = self.p.document(hashcode)
-        if doc.exists:
+    def get_patient(self, hashcode):
+        pat = self.p.document(hashcode).get()
+        pat_data = pat.to_dict()
+        if pat.exists:
             med_events = []
-            for event in doc.data["med_events"]:
-                me_doc = self.m.document(event)
+            for event in pat_data["med_events"]:
+                me_doc = self.m.document(event).get()
+                me_doc_data = me_doc.to_dict()
                 drugs = []
-                for drug in me_doc.data["drugs"]:
-                    drug_doc = self.drug.document(drug)
-                    drugs.append(Drug(name=drug_doc.data["name"], generic_name=drug_doc.data["generic_name"],
-                                      dosage=drug_doc.data["dosage"], side_effects=drug_doc.data["side_effects"],
-                                      start=drug_doc.data["start"], end=drug_doc.data["data"]))
-                med_events.append(Medical_Event(ICD10_code=me_doc.data["ICD10"], disease=me_doc.data["disease"], start=me_doc.data["start"],
-                                                end=me_doc.data["end"], drugs=drugs, outcome=me_doc.data["outcome"], response=me_doc.data["response"]))
-            return Patient(first_name=doc.data["first_name"], last_name=doc.data["last_name"],
-                           id_type=doc.data["id_type"], id_data=doc.data["id_data"], dob=doc.data["dob"],
-                           sex=doc.data["sex"], height=doc.data["height"], weight=doc.data["weight"],
+                for drug in me_doc_data["drugs"]:
+                    drug_doc = self.d.document(drug)
+                    drug_doc_data = drug_doc.to_dict()
+                    drugs.append(Drug(name=drug_doc_data["name"], generic_name=drug_doc_data["generic_name"],
+                                      dosage=drug_doc_data["dosage"], side_effects=drug_doc_data["side_effects"],
+                                      start=drug_doc_data["start"], end=drug_doc_data["data"]))
+                med_events.append(Medical_Event(ICD10_code=me_doc_data["ICD10"], disease=me_doc_data["disease"], start=me_doc_data["start"],
+                                                end=me_doc_data["end"], drugs=drugs, outcome=me_doc_data["outcome"], response=me_doc_data["response"]))
+            return Patient(first_name=pat_data["first_name"], last_name=pat_data["last_name"],
+                           id_type=pat_data["id_type"], id_data=pat_data["id_data"], dob=pat_data["dob"],
+                           sex=pat_data["sex"], height=pat_data["height"], weight=pat_data["weight"],
                            med_events=med_events)
         else:
             return None
 
     # Given a hash for a patient and dictionaries of class attributes to be updated, this method updates patient info
-    def updatePatient(self, hashcode, p_dic):
-        p_doc = getPatient(self, hashcode)
+    def updatePatient(self, hashcode, updated_fields):
+        pat = self.get_patient(hashcode)
         p_keys = list(p_dic.keys)       
         for key in p_keys:
             p_doc.data[key] = p_dic.get(key)                
@@ -103,8 +114,7 @@ class Database:
         #make new document in patients collection
         p_doc = self.p.document(hashcode)
         #make new data entries for document
-        first_name = patient.first_name
-        p_doc.data["first_name"] = first_name
+        p_doc.data["first_name"] = patient.first_name
         last_name = patient.last_name
         p_doc.data["last_name"] = last_name 
         dob = patient.dob
