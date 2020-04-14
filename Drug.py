@@ -1,59 +1,35 @@
-#add start and end dates (implement datetime class)
-#add mutator functions for changing start and end date of a Drug
 import datetime
+import hashlib
 
 
 class Drug:
-    #initializer
-    def __init__(self, name="", generic_name="", dosage="", diseases=[], side_effects=[], incompatible_drugs=[], start=None, end=None):
+    # initializer
+    def __init__(self, name="", generic_name="", dosage="", side_effects=None, incompatible_drugs=None, start=None, end=None):
         self.name = name
         self.generic_name = generic_name
-        #Currently using dosage as a string so that we can include units.
-        #Is it beneficial to make dosage a numerical value?
         self.dosage = dosage
-        self.diseases = diseases
         self.side_effects = side_effects
         self.incompatible_drugs = incompatible_drugs
         self.start = start
         self.end = end
 
-    #accessors
-    def get_name(self):
-        return self.name
-
-    def get_generic_name(self):
-        return self.generic_name
-
-    def get_dosage(self):
-        return self.dosage
-
-    def get_diseases(self):
-        return self.diseases
-
-    def get_side_effects(self):
-        return self.side_effects
-
-    #mutators
-    def set_end_date(self,end=None):
-        self.end = end
-
-    #equals
+    # equals
     def __str__(self):
-        string = self.name+'; '+self.generic_name+'; '+self.dosage+'; '
+        string = self.name + '; ' + self.generic_name + '; ' + self.dosage + '; '
         diseases = ''
-        for disease in self.diseases:
-            diseases = diseases + disease +', '
-        string = string + diseases +'; '
+        string = string + diseases + '; '
         side_effects = ''
         for side_effect in self.side_effects:
-            side_effects = side_effects + side_effect +', '
-        string = string + side_effects +'; '
+            side_effects = side_effects + side_effect + ', '
+        string = string + side_effects + '; '
         incompatible_drugs = ''
         for other_drug in self.incompatible_drugs:
             incompatible_drugs = incompatible_drugs + other_drug+', '
         string = string + incompatible_drugs + '; '
-        string = string +'Start: '+str(self.start)+'; End: '+str(self.end)
+        string = string + 'Start: ' + str(self.start) + '; End: '+str(self.end)
         return string
+
+
 
 if __name__ == "__main__":
     start1 = datetime.date(2000,2,29)

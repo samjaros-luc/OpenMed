@@ -1,11 +1,12 @@
-import drug
 import datetime
+import hashlib
 
 
 class Medical_Event:
 
-    def __init__(self, ICD10_code="", disease="", drugs=[], symptoms=[], start=None, end=None, response="", outcome=""):
-        self.ICD10_code = ICD10_code
+    def __init__(self, patient=None, ICD10="", disease="", drugs=[], symptoms=[], start=None, end=None, response="", outcome=""):
+        self.patient = patient
+        self.ICD10 = ICD10_code
         self.disease = disease
         self.drugs = drugs
         self.symptoms = symptoms
@@ -13,9 +14,15 @@ class Medical_Event:
         self.end = end
         self.response = response
         self.outcome = outcome
+        h = hashlib.sha256()
+        h.update(patient.hashcode.encode())
+        h.update(ICD10_code.encode())
+        h.update(disease.encode())
+        h.update(start.encode())
+        self.hashcode = h.hexdigest()
 
     def __str__(self):
-        string = self.ICD10_code + "; " + self.disease + "; " + str(self.start) + "; " + str(self.end) + "; "
+        string = self.ICD10 + "; " + self.disease + "; " + str(self.start) + "; " + str(self.end) + "; "
         symptoms = ""
         for symptom in self.symptoms:
             symptoms = symptoms + symptom + ", "
@@ -26,27 +33,6 @@ class Medical_Event:
         string = string + "; " + drugs + "; " + self.response + "; " + self.outcome
         return string
 
-    def get_ICD10_code(self):
-        return self.ICD10_code
-
-    def get_symptoms(self):
-        return self.symptoms
-
-    def get_start(self):
-        return self.start
-    
-    def get_disease(self):
-        return self.disease
-
-    def get_end(self):
-        return self.end
-
-    def get_response(self):
-        return self.response
-
-    def get_outcome(self):
-        return self.outcome
-
     def update_outcome(self, end, drugs, response, outcome):
         self.end = end
         self.drugs = drugs
@@ -54,7 +40,7 @@ class Medical_Event:
         self.outcome = outcome
 
     def print_info(self):
-        print("Event code: " + self.ICD10_code + "; " + self.disease + "; Start Date: " + str(self.start) + "; End Date: " + str(self.end))
+        print("Event code: " + self.ICD10 + "; " + self.disease + "; Start Date: " + str(self.start) + "; End Date: " + str(self.end))
         symptoms = ""
         for symptom in self.symptoms:
             symptoms = symptoms + symptom + ", "
@@ -65,6 +51,22 @@ class Medical_Event:
         print("Symptoms: " + symptoms)
         print("Response: " + self.response)
         print("Outcome: " + self.outcome)
+
+    def to_dict(self):
+        drug_list = []
+        for drug in self.drugs:
+            drug_list.append(drug.hexcode)
+        return {
+            'patient_hash': self.patient.hashcode,
+            'ICD10': self.ICD10,
+            'disease': self.disease,
+            'drugs': drug_list,
+            'start': self.start,
+            'end': self.end,
+            'response': self.response,
+            'outcome': self.outcome,
+            'symptoms': self.symptoms
+        }
 
 
 if __name__ == "__main__":
