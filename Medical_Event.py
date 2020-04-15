@@ -6,7 +6,7 @@ class Medical_Event:
 
     def __init__(self, patient=None, ICD10="", disease="", drugs=[], symptoms=[], start=None, end=None, response="", outcome=""):
         self.patient = patient
-        self.ICD10 = ICD10_code
+        self.ICD10 = ICD10
         self.disease = disease
         self.drugs = drugs
         self.symptoms = symptoms
@@ -16,7 +16,7 @@ class Medical_Event:
         self.outcome = outcome
         h = hashlib.sha256()
         h.update(patient.hashcode.encode())
-        h.update(ICD10_code.encode())
+        h.update(ICD10.encode())
         h.update(disease.encode())
         h.update(start.encode())
         self.hashcode = h.hexdigest()
