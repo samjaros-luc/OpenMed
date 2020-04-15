@@ -34,12 +34,12 @@ class Patient:
     def to_dict(self):
         me_list = []
         for event in self.med_events:
-            me_list.append(event.hashcode())
+            me_list.append(event.hashcode)
         return {
             'hashcode': self.hashcode,
             'first_name': self.first_name,
             'last_name': self.last_name,
-            'dob': self.dob,
+            'dob': str(self.dob),
             'id_data': self.id_data,
             'id_type': self.id_type,
             'sex': self.sex,

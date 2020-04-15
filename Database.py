@@ -1,16 +1,18 @@
 import firebase_admin
-from firebase_admin import credentials, auth, firestore
+from firebase_admin import credentials, firestore
 from firebase import Firebase as fb
 # For interacting with companion classes
 from Patient import Patient
 from Medical_Event import Medical_Event
 from Drug import Drug
-import datetime
+from datetime import date
 
 class Database:
     p = None   # Patient collection reference
     m = None   # Medical event collection reference
     drug = None   # Drugs collection reference
+    user = None   # User reference
+    token = ""   # User's token to use when getting/pushing
 
     def __init__(self, username, password):
         config = {
@@ -22,8 +24,11 @@ class Database:
         }
 
         client = fb(config)
-        # TODO get token for user to create handle
+        auth = client.auth()
+        db = client.database()
 
+        self.user = auth.sign_in_with_email_and_password(username, password)
+        self.token = self.user['idToken']
 
         ### TEMPORARY access collections via service account
         # Get credentials using token from service account (.json file, Sam can send it to you)
@@ -48,11 +53,11 @@ class Database:
                 me_doc_data = me_doc.to_dict()
                 drugs = []
                 for drug in me_doc_data["drugs"]:
-                    drug_doc = self.d.document(drug)
+                    drug_doc = self.d.document(drug).get()
                     drug_doc_data = drug_doc.to_dict()
                     drugs.append(Drug(name=drug_doc_data["name"], generic_name=drug_doc_data["generic_name"],
                                       dosage=drug_doc_data["dosage"], side_effects=drug_doc_data["side_effects"],
-                                      start=drug_doc_data["start"], end=drug_doc_data["data"]))
+                                      start=drug_doc_data["start"], end=drug_doc_data["end"]))
                 med_events.append(Medical_Event(ICD10=me_doc_data["ICD10"], disease=me_doc_data["disease"], start=me_doc_data["start"],
                                                 end=me_doc_data["end"], drugs=drugs, outcome=me_doc_data["outcome"], response=me_doc_data["response"]))
             return Patient(first_name=pat_data["first_name"], last_name=pat_data["last_name"],
@@ -77,6 +82,16 @@ class Database:
         dr.update(drug.to_dict())
 
 if __name__ == "__main__":
-    Database(username="admin", password="admin")
+    try:
+        Database(username="wrong",password="wrong")
+    except:
+        print("Sign-in correctly failed")
 
-   
+    db = Database(username="pass_is_password@gmail.com", password="password")
+    print("Sign-in correctly succeeded")
+
+    pat = db.get_patient(Patient(first_name="John", last_name="Doe", id_type="Driver's License", id_data="1234567890").hashcode)
+    print("Patient received:\n"+str(pat.to_dict()))
+
+
+

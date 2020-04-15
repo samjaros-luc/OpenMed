@@ -4,7 +4,7 @@ import hashlib
 
 class Medical_Event:
 
-    def __init__(self, patient=None, ICD10="", disease="", drugs=[], symptoms=[], start=None, end=None, response="", outcome=""):
+    def __init__(self, patient="", ICD10="", disease="", drugs=[], symptoms=[], start=None, end=None, response="", outcome=""):
         self.patient = patient
         self.ICD10 = ICD10
         self.disease = disease
@@ -15,7 +15,7 @@ class Medical_Event:
         self.response = response
         self.outcome = outcome
         h = hashlib.sha256()
-        h.update(patient.hashcode.encode())
+        h.update(patient.encode())
         h.update(ICD10.encode())
         h.update(disease.encode())
         h.update(start.encode())
@@ -55,14 +55,14 @@ class Medical_Event:
     def to_dict(self):
         drug_list = []
         for drug in self.drugs:
-            drug_list.append(drug.hexcode)
+            drug_list.append(drug.hashcode)
         return {
-            'patient_hash': self.patient.hashcode,
+            'patient_hash': self.patient,
             'ICD10': self.ICD10,
             'disease': self.disease,
             'drugs': drug_list,
-            'start': self.start,
-            'end': self.end,
+            'start': str(self.start),
+            'end': str(self.end),
             'response': self.response,
             'outcome': self.outcome,
             'symptoms': self.symptoms

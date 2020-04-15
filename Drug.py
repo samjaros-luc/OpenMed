@@ -4,7 +4,7 @@ import hashlib
 
 class Drug:
     # initializer
-    def __init__(self, medical_event=None, name="", generic_name="", dosage="", side_effects=None, incompatible_drugs=None, start=None, end=None):
+    def __init__(self, medical_event="", name="", generic_name="", dosage="", side_effects=None, incompatible_drugs=None, start=None, end=None):
         self.medical_event = medical_event
         self.name = name
         self.generic_name = generic_name
@@ -14,7 +14,7 @@ class Drug:
         self.start = start
         self.end = end
         h = hashlib.sha256()
-        h.update(medical_event.hashcode.encode())
+        h.update(medical_event.encode())
         h.update(name.encode())
         h.update(dosage.encode())
         h.update(start.encode())
@@ -38,14 +38,14 @@ class Drug:
 
     def to_dict(self):
         return {
-            'medical_event': self.medical_event,
+            'med_event_hash': self.medical_event,
             'name': self.name,
             'generic_name': self.generic_name,
             'dosage': self.dosage,
             'side_effects': self.side_effects,
             'incompatible_drugs': self.incompatible_drugs,
-            'start': self.start,
-            'end': self.end
+            'start': str(self.start),
+            'end': str(self.end)
         }
 
 if __name__ == "__main__":
