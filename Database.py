@@ -8,13 +8,27 @@ from Drug import Drug
 from datetime import date
 
 class Database:
+    config = None   # firebase config
+
     p = None   # Patient collection reference
     m = None   # Medical event collection reference
     drug = None   # Drugs collection reference
     user = None   # User reference
     token = ""   # User's token to use when getting/pushing
 
-    def __init__(self, username, password):
+    def __init__(self):
+        # Access collections via service account
+        # Get credentials using token from service account (.json file, Sam can send it to you)
+        cred = credentials.Certificate("C:/Users/samja/OneDrive/Loyola - Semester 8/COMP 363/OpenMed/openmed-comp363-firebase-adminsdk-qglti-767b82d10f.json")
+        # Create instance of application
+        app = firebase_admin.initialize_app(cred)
+
+        client = firestore.client(app)   # Create handle
+        self.p = client.collection("patients")   # Patient collection
+        self.m = client.collection("medical_events")   # Medical event collection
+        self.d = client.collection("drugs")   # Drugs collection
+
+    def userLogin(self, username, password):
         config = {
             "apiKey": "AIzaSyDuEowvI82yDtNdQIdYzL_4xKdCz6iFuHo",
             "authDomain": "openmed-comp363.firebaseapp.com",
@@ -25,21 +39,11 @@ class Database:
 
         client = fb(config)
         auth = client.auth()
-        db = client.database()
 
-        self.user = auth.sign_in_with_email_and_password(username, password)
-        self.token = self.user['idToken']
-
-        ### TEMPORARY access collections via service account
-        # Get credentials using token from service account (.json file, Sam can send it to you)
-        cred = credentials.Certificate("C:/Users/samja/OneDrive/Loyola - Semester 8/COMP 363/OpenMed/openmed-comp363-firebase-adminsdk-qglti-767b82d10f.json")
-        # Create instance of application
-        app = firebase_admin.initialize_app(cred)
-
-        client = firestore.client(app)   # Create handle
-        self.p = client.collection("patients")   # Patient collection
-        self.m = client.collection("medical_events")   # Medical event collection
-        self.d = client.collection("drugs")   # Drugs collection
+        try:
+            self.user = auth.sign_in_with_email_and_password(username, password)
+            return True
+        except: return False
 
     # Given patient info, it grabs the patient record
     # Required input: dictionary with "first_name", "last_name", "id_type", and "id_data" defined
@@ -82,12 +86,13 @@ class Database:
         dr.update(drug.to_dict())
 
 if __name__ == "__main__":
+    foo = Database()
     try:
-        Database(username="wrong",password="wrong")
+        foo.userLogin(username="wrong",password="wrong")
     except:
         print("Sign-in correctly failed")
 
-    db = Database(username="pass_is_password@gmail.com", password="password")
+    foo.userLogin(username="pass_is_password@gmail.com", password="password")
     print("Sign-in correctly succeeded")
 
     pat = db.get_patient(Patient(first_name="John", last_name="Doe", id_type="Driver's License", id_data="1234567890").hashcode)
