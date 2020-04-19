@@ -1,9 +1,13 @@
-import datetime
+from Medical_Event import Medical_Event
+from datetime import date
+from typing import List
 import hashlib
 
 
 class Patient:
-    def __init__(self, first_name='', last_name='', dob=None, id_data='', id_type='', sex="N", height=-1, weight=-1, med_events=None):
+    def __init__(self, first_name: str = '', last_name: str = '', dob: date = None, id_data: str = '',
+                 id_type: str = '', sex: str = "Unknown", height: float = 0, weight: float = 0,
+                 med_events: List[Medical_Event] = None):
         self.first_name = first_name
         self.last_name = last_name
         self.dob = dob
@@ -12,7 +16,10 @@ class Patient:
         self.sex = sex
         self.height = height
         self.weight = weight
-        self.med_events = med_events
+        if med_events is None:
+            self.med_events = []
+        else:
+            self.med_events = med_events
         #Python's hash method using a different random seed for each run, thus
         #a different hashing method is needed
         #self.hashcode = hash((first_name+last_name+id_type+id_data))

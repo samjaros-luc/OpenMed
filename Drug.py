@@ -1,23 +1,32 @@
-import datetime
+from datetime import date
+from typing import List
 import hashlib
 
 
 class Drug:
     # initializer
-    def __init__(self, medical_event="", name="", generic_name="", dosage="", side_effects=None, incompatible_drugs=None, start=None, end=None):
+    def __init__(self, medical_event: str = "", name: str = "", generic_name: str = "", dosage: str = "",
+                 side_effects: List[str] = None, incompatible_drugs: List[str] = None, start: date = None,
+                 end: date = None):
         self.medical_event = medical_event
         self.name = name
         self.generic_name = generic_name
         self.dosage = dosage
-        self.side_effects = side_effects
-        self.incompatible_drugs = incompatible_drugs
+        if side_effects is None:
+            self.side_effects = []
+        else:
+            self.side_effects = side_effects
+        if incompatible_drugs is None:
+            self.incompatible_drugs = []
+        else:
+            self.incompatible_drugs = incompatible_drugs
         self.start = start
         self.end = end
         h = hashlib.sha256()
         h.update(medical_event.encode())
         h.update(name.encode())
         h.update(dosage.encode())
-        h.update(start.encode())
+        h.update(str(start).encode())
         self.hashcode = h.hexdigest()
 
     # equals

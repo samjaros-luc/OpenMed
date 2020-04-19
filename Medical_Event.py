@@ -1,15 +1,23 @@
-import datetime
+from datetime import date
+from Drug import Drug
+from typing import List
 import hashlib
-
 
 class Medical_Event:
 
-    def __init__(self, patient="", ICD10="", disease="", drugs=[], symptoms=[], start=None, end=None, response="", outcome=""):
+    def __init__(self, patient: str = "", ICD10: str = "", disease: str = "", drugs: List[Drug] = None,
+                 symptoms: List[str] = None, start: date = None, end: date = None, response: str = "", outcome: str = ""):
         self.patient = patient
         self.ICD10 = ICD10
         self.disease = disease
-        self.drugs = drugs
-        self.symptoms = symptoms
+        if drugs is None:
+            self.drugs = []
+        else:
+            self.drugs = drugs
+        if symptoms is None:
+            self.symptoms = []
+        else:
+            self.symptoms = symptoms
         self.start = start
         self.end = end
         self.response = response
@@ -18,7 +26,7 @@ class Medical_Event:
         h.update(patient.encode())
         h.update(ICD10.encode())
         h.update(disease.encode())
-        h.update(start.encode())
+        h.update(str(start).encode())
         self.hashcode = h.hexdigest()
 
     def __str__(self):
@@ -29,7 +37,7 @@ class Medical_Event:
         string = string + symptoms
         drugs = ""
         for drug in self.drugs:
-            drugs = drugs + drug + ", "
+            drugs = drugs + str(drug) + ", "
         string = string + "; " + drugs + "; " + self.response + "; " + self.outcome
         return string
 

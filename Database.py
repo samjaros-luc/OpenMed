@@ -6,6 +6,7 @@ from Patient import Patient
 from Medical_Event import Medical_Event
 from Drug import Drug
 from datetime import date
+from typing import Any
 
 class Database:
     config = None   # firebase config
@@ -28,7 +29,7 @@ class Database:
         self.m = client.collection("medical_events")   # Medical event collection
         self.d = client.collection("drugs")   # Drugs collection
 
-    def userLogin(self, username, password):
+    def userLogin(self, username: str, password: str) -> None:
         config = {
             "apiKey": "AIzaSyDuEowvI82yDtNdQIdYzL_4xKdCz6iFuHo",
             "authDomain": "openmed-comp363.firebaseapp.com",
@@ -47,7 +48,7 @@ class Database:
 
     # Given patient info, it grabs the patient record
     # Required input: dictionary with "first_name", "last_name", "id_type", and "id_data" defined
-    def get_patient(self, hashcode):
+    def get_patient(self, hashcode: str) -> Any:
         pat = self.p.document(hashcode).get()
         pat_data = pat.to_dict()
         if pat.exists:
@@ -61,7 +62,8 @@ class Database:
                     drug_doc_data = drug_doc.to_dict()
                     drugs.append(Drug(name=drug_doc_data["name"], generic_name=drug_doc_data["generic_name"],
                                       dosage=drug_doc_data["dosage"], side_effects=drug_doc_data["side_effects"],
-                                      start=drug_doc_data["start"], end=drug_doc_data["end"]))
+                                      start=drug_doc_data["start"], end=drug_doc_data["end"],
+                                      incompatible_drugs=drug_doc_data["incompatible_drugs"]))
                 med_events.append(Medical_Event(ICD10=me_doc_data["ICD10"], disease=me_doc_data["disease"], start=me_doc_data["start"],
                                                 end=me_doc_data["end"], drugs=drugs, outcome=me_doc_data["outcome"], response=me_doc_data["response"]))
             return Patient(first_name=pat_data["first_name"], last_name=pat_data["last_name"],
@@ -72,16 +74,16 @@ class Database:
             return None
 
     # Given a patient and the fields that need to be updated, update them
-    def push_patient(self, patient):
+    def push_patient(self, patient: Patient) -> None:
         pat = self.p.document(patient.hashcode)
         pat.update(patient.to_dict())
 
     # Given a medical event and the fields that need to be updated, update them
-    def push_medical_event(self, medical_event):
+    def push_medical_event(self, medical_event: Medical_Event) -> None:
         me = self.m.document(medical_event.hashcode)
         me.update(medical_event.to_dict())
 
-    def push_drug(self, drug):
+    def push_drug(self, drug: Drug) -> None:
         dr = self.d.document(drug.hash)
         dr.update(drug.to_dict())
 
