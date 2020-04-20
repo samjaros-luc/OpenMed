@@ -73,7 +73,12 @@ class Database:
         else:
             return None
 
-    # Given a patient and the fields that need to be updated, update them
+    # Given a NEW patient, adds them to the colleciton
+    def add_patient(self, patient: Patient) -> None:
+        pat = self.p.document(patient.hashcode)
+        pat.create(patient.to_dict())
+
+    # Given a patient, updates it
     def push_patient(self, patient: Patient) -> None:
         pat = self.p.document(patient.hashcode)
         pat.update(patient.to_dict())
@@ -81,11 +86,11 @@ class Database:
     # Given a medical event and the fields that need to be updated, update them
     def push_medical_event(self, medical_event: Medical_Event) -> None:
         me = self.m.document(medical_event.hashcode)
-        me.update(medical_event.to_dict())
+        me.set(medical_event.to_dict())
 
     def push_drug(self, drug: Drug) -> None:
-        dr = self.d.document(drug.hash)
-        dr.update(drug.to_dict())
+        dr = self.d.document(drug.hashcode)
+        dr.set(drug.to_dict())
 
 if __name__ == "__main__":
     foo = Database()

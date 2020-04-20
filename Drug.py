@@ -25,6 +25,7 @@ class Drug:
         h = hashlib.sha256()
         h.update(medical_event.encode())
         h.update(name.encode())
+        h.update(generic_name.encode())
         h.update(dosage.encode())
         h.update(str(start).encode())
         self.hashcode = h.hexdigest()
