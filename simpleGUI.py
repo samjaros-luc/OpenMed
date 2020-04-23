@@ -39,16 +39,7 @@ def login() -> None:
         if button in (None, "Quit"):   # If X-out, break
             window.close()
             break
-
-        ################## REMOVE BEFORE TURNING IN ###########
-        window.close()
-        provider_menu()
-        break
-
-        usernameIn = values["user"]
-        passwordIn = values["pass"]
-
-        if db.userLogin(usernameIn, passwordIn):
+        if db.userLogin(values["user"], values["pass"]):
             window.close()
             provider_menu()
             break
